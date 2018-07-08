@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blockchain.view.layoutController">
+   <children>
+      <TabPane layoutX="200.0" prefHeight="604.0" prefWidth="653.0" styleClass="tab" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="General">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="tab">
+                     <children>
+                        <Button id="bonus-button" fx:id="initFundButton" layoutX="68.0" layoutY="279.0" minHeight="57.0" mnemonicParsing="false" onAction="#rcvFund" prefHeight="57.0" prefWidth="466.0" text="100 Bitcoin$ Bonus" />
+                        <TextArea fx:id="myPublicKeyText" editable="false" layoutX="68.0" layoutY="55.0" prefHeight="200.0" prefWidth="466.0" style="-fx-wrap-text: true;" />
+                        <Label layoutX="68.0" layoutY="23.0" styleClass="intro-label" text="My Public Key:" />
+                        <Button layoutX="68.0" layoutY="362.0" mnemonicParsing="false" onAction="#broadcastPublicKey" prefHeight="25.0" prefWidth="467.0" text="Send public key to Everyone" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Create Transaction">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-border-radius: 10;" styleClass="tab">
+                     <children>
+                        <TextArea fx:id="recipientPK" layoutX="67.0" layoutY="54.0" prefHeight="169.0" prefWidth="469.0" style="-fx-wrap-text: true;" />
+                        <Label layoutX="66.0" layoutY="23.0" styleClass="intro-label" text="Recipient Public Key: " />
+                        <TextField fx:id="valueTextField" layoutX="69.0" layoutY="279.0" prefHeight="25.0" prefWidth="139.0" />
+                        <Label layoutX="69.0" layoutY="242.0" styleClass="intro-label" text="Value of Bitcoin you want to send:" />
+                        <Button id="send-button" layoutX="232.0" layoutY="279.0" mnemonicParsing="false" onAction="#sendFund" prefHeight="25.0" prefWidth="300.0" text="Send Fund" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="UTXOs">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="UTXOTable" prefHeight="558.0" prefWidth="653.0">
+                          <columns>
+                            <TableColumn fx:id="valueCol" prefWidth="75.0" text="value" />
+                            <TableColumn fx:id="recipientCol" prefWidth="405.0" text="recipient" />
+                              <TableColumn fx:id="parentCol" prefWidth="171.0" text="Parent Transaction" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Blockchain">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="blockchainTable" layoutY="-1.0" prefHeight="558.0" prefWidth="653.0">
+                          <columns>
+                            <TableColumn fx:id="idCol" prefWidth="75.0" text="Chain Num" />
+                            <TableColumn fx:id="blockHashCol" prefWidth="577.0" text="Block Hash" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Block">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="blockTable" onMouseClicked="#clickBlockForMine" prefHeight="344.0" prefWidth="653.0">
+                          <columns>
+                            <TableColumn fx:id="blockIdCol" prefWidth="75.0" text="block id" />
+                            <TableColumn fx:id="markleRootCol" prefWidth="577.0" text="Markle Root of the Block" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="miningTextField" layoutX="34.0" layoutY="374.0" prefHeight="25.0" prefWidth="492.0" />
+                        <Button layoutX="34.0" layoutY="417.0" mnemonicParsing="false" onAction="#mineBlock" prefHeight="25.0" prefWidth="94.0" text="MineBlock" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Mined BLocks">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="minedBlocksTable" layoutY="-1.0" prefHeight="562.0" prefWidth="653.0">
+                          <columns>
+                            <TableColumn fx:id="minedBlockIdCol" prefWidth="113.0" text="Mined Block Id" />
+                            <TableColumn fx:id="minedMarkleRootCol" prefWidth="539.0" text="Mined Blocks Markle Root" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <AnchorPane id="anchorpane-left" layoutY="-2.0" prefHeight="606.0" prefWidth="200.0">
+         <children>
+            <Label id="balance" layoutX="31.0" layoutY="279.0" prefHeight="35.0" prefWidth="139.0" text="My Balance:" />
+            <ImageView id="image-view" fitHeight="169.0" fitWidth="167.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@view/ut.png" />
+               </image>
+            </ImageView>
+            <Label id="balance" fx:id="balanceLabel" layoutX="75.0" layoutY="326.0" prefHeight="28.0" prefWidth="71.0" text="0.0" />
+            <Label layoutX="40.0" layoutY="194.0" styleClass="intro-label" text="University of Tehran" />
+            <Label layoutX="62.0" layoutY="217.0" styleClass="intro-label" text="Dr. Kamandi" />
+            <Label layoutX="10.0" layoutY="6.0" onMousePressed="#close" text="X" />
+            <Label layoutX="49.0" layoutY="404.0" styleClass="intro-label" text="Sohrab Khanbadr" />
+            <Label layoutX="57.0" layoutY="431.0" styleClass="intro-label" text="Alireza Shafiei" />
+            <Label layoutX="57.0" layoutY="461.0" styleClass="intro-label" text="Vahid Heidary" />
+            <Label layoutX="25.0" layoutY="487.0" styleClass="intro-label" text="Parsa Heidary Moghadam" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

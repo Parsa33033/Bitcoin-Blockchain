@@ -1,0 +1,84 @@
+
+#anchorpane-left{
+	-fx-background-color: #bcbcbc;
+}
+
+label{
+	-fx-text-fill: red;
+}
+
+.table-view{
+   -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: white;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(white 0%, #4286f4 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: #828282;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-fixed-cell-min-height:20px;
+}
+
+#balance{
+	-fx-text-fill: #4286f4;
+	-fx-font-size: 2em;
+	-fx-font-family: "Comic Sans MS";
+}
+
+.intro-label{
+	-fx-text-fill: #4286f4;
+	-fx-font-size: 1.2em;
+	-fx-font-family: "serif";
+}
+
+.tab-pane .tab{
+	
+}
+
+.table-row-cell {
+    -fx-cell-size: 50px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #4286f4;
+}
+
+.tab-pane{
+    -fx-tab-min-width:90px;
+    -fx-tab-min-height:40px;
+}
+
+#bonus-button{
+	-fx-text-fill: #4286f4;
+	-fx-border-radius: 5px;
+}
+
+#send-button{
+	-fx-text-fill: #4286f4;
+	-fx-border-radius: 5px;
+}
